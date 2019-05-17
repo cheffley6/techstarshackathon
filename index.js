@@ -4,10 +4,12 @@ var http = require('http');
 // We define the port we want to listen to. Logically this has to be the same port than we specified on ngrok.
 const PORT=4390;
 
+//https://4e6e6e73.ngrok.io/rps-rock
+
 // We create a function which handles any requests and sends a simple response
 function handleRequest(request, response){
   console.log(request.url);
-  
+
   //Call methods
   switch(request.url)
   {
