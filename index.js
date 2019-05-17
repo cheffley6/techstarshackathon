@@ -26,6 +26,15 @@ function handleRequest(request, response){
     case "/rps-spock":
       RPS_SpockCall(response);
       break;
+    case "/roll-d4":
+      rollD4();
+      break;
+    case "/roll-d6":
+      rollD6();
+      break;
+    case "/roll-d8":
+      rollD8();
+      break;
   }  
 }
 
