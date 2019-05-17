@@ -9,6 +9,7 @@ const PORT=4390;
 // We create a function which handles any requests and sends a simple response
 function handleRequest(request, response){
   //Call methods
+  console.log(request);
   switch(request.url)
   {
     case "/rps-rock":
