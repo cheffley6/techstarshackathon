@@ -20,6 +20,12 @@ function handleRequest(request, response){
     case "/rps-scissor":
       RPS_ScissorCall(response);
       break;
+    case "/rps-lizard":
+      RPS_LizardCall(response);
+      break;
+    case "/rps-spock":
+      RPS_SpockCall(response);
+      break;
   }  
 }
 
@@ -29,28 +35,56 @@ function RandomValueGenerator(min, max){
 }
 function RPS_RockCall(response)
 {
-  var random = RandomValueGenerator(1,4);
+  var random = RandomValueGenerator(1,6);
   var message = "Bot chose Rock - Tie!";
   if(random == 2) message = "Bot chose Scissor - You Win!";
   else if(random == 3) message = "Bot chose Paper - You Lose!";
+  else if(random == 4) message = "Bot chose Lizard - You Win!";
+  else if(random == 5) message = "Bot chose Spock - You Lose!";
   response.end(message);
 }
 
 function RPS_PaperCall(response)
 {
-  var random = RandomValueGenerator(1,4);
+  var random = RandomValueGenerator(1,6);
   var message = "Bot chose Paper - Tie!"
   if(random == 2) message = "Bot chose Rock - You Win!"
   else if(random == 3) message = "Bot chose Scissor - You Lose!"
+  else if(random == 4) message = "Bot chose Lizard - You Lose!";
+  else if(random == 5) message = "Bot chose Spock - You Win!";
   response.end(message);
 }
 
 function RPS_ScissorCall(response)
 {
-  var random = RandomValueGenerator(1,4);
+  var random = RandomValueGenerator(1,6);
   var message = "Bot chose Scissor - Tie!"
   if(random == 2) message = "Bot chose Paper - You Win!"
   else if(random == 3) message = "Bot chose Rock - You Lose!"
+  else if(random == 4) message = "Bot chose Lizard - You Win!";
+  else if(random == 5) message = "Bot chose Spock - You Lose!";
+  response.end(message);
+}
+
+function RPS_LizardCall(response)
+{
+  var random = RandomValueGenerator(1,6);
+  var message = "Bot chose Lizard - Tie!"
+  if(random == 2) message = "Bot chose Paper - You Win!"
+  else if(random == 3) message = "Bot chose Rock - You Lose!"
+  else if(random == 4) message = "Bot chose Scissors - You Lose!";
+  else if(random == 5) message = "Bot chose Spock - You Win!";
+  response.end(message);
+}
+
+function RPS_SpockCall(response)
+{
+  var random = RandomValueGenerator(1,6);
+  var message = "Bot chose Spock - Tie!"
+  if(random == 2) message = "Bot chose Paper - You Lose!"
+  else if(random == 3) message = "Bot chose Rock - You Win!"
+  else if(random == 4) message = "Bot chose Lizard - You Lose!";
+  else if(random == 5) message = "Bot chose Scissors - You Win!";
   response.end(message);
 }
 
