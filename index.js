@@ -27,6 +27,9 @@ function handleRequest(request, response){
     case "/rps-spock":
       RPS_SpockCall(response);
       break;
+    case "/help":
+      help(response);
+      break
     case "/roll-d4":
       rollD4();
       break;
@@ -108,6 +111,17 @@ function RPS_SpockCall(response)
   else if(random == 4) message = "Bot chose Lizard - You Lose!";
   else if(random == 5) message = "Bot chose Scissors - You Win!";
   response.end(message);
+}
+
+//Help Command
+
+function help(response)
+{
+  var message = "Welcome to Ulti-lity Bot!\n" + 
+                "We have a variety of awesome utilities for everyone!\n" +
+                "For Rock Paper Scissor Lizard Spock: /rps-{Play}" +
+                "For a con flip: /coinflip\n" +
+                "For a dice roll: /roll-{dice value}\n";
 }
 
 // We create the web server object calling the createServer function. Passing our request function onto createServer guarantees the function is called once for every HTTP request that's made against the server
