@@ -15,6 +15,12 @@ function handleRequest(request, response){
   {
     case "/rps-rock":
       RPS_RockCall(response);
+      break;
+    case "/numguess":
+      numGuess(response, request);
+      break;
+    case "/roll-d20":
+      rolld20(response);
   }  
 }
 
@@ -30,6 +36,16 @@ function RPS_RockCall(response)
   } 
   else if(random == 3) message = "I choose Paper - I win!!"
   response.end(message);
+  
+}
+
+function numGuess(response, guess) {
+  console.log(guess);
+  response.end("30");
+}
+
+function rolld20(response) {
+  var randNum = Math.floor(Math.random() * (20) + 1));
   
 }
 
