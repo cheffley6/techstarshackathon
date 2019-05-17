@@ -28,6 +28,7 @@ function handleRequest(request, response){
       break;
     case "/roll-d20":
       rolld20(response);
+      break;
     case "/help":
       help(response);
       break
@@ -45,6 +46,9 @@ function handleRequest(request, response){
       break;
     case "/quote":
       Quote(response);
+      break;
+    case "/ulti-links":
+      ultiLinks(response);
       break;
   }  
 }
@@ -129,14 +133,34 @@ function rolld20(response) {
   response.end(RandomValueGenerator(1, 21) + "");
 }
 
+function ultiLinks(response){
+  var message = "These are some important link:\n" +
+                "Git Servers: https://ultigit.ultimatesoftware.com\n"+
+                "Ulti Home: https://ultihome.ultimatesoftware.com/Home\n"+
+                "UltiPro: https://my.ultimatesoftware.com/\n"+
+                "Concur: http://concur.ultimatesoftware.com/\n"+
+                "Gmail: https://mail.google.com/mail/#inbox\n"+
+                "Google Drive: https://drive.google.com/drive/my-drive\n"+
+                "Google Calendar: https://calendar.google.com/calendar/r?pli=1\n"+
+                "Jira Dashboard: https://ultidev/secure/Dashboard.jspa\n"+
+                "Ulti Map: http://hqmap.ultimatesoftware.com/\n"+
+                "CTS Support: https://ultihome.ultimatesoftware.com/help/RequestHelpForm?from=help\n"+
+                "TeamCity: https://ci.mia.ucloud.int/\n"
+  response.end(message);
+}
+
 //Help Command
 function help(response)
 {
   var message = "Welcome to Ulti-lity Bot!\n" + 
                 "We have a variety of awesome utilities for everyone!\n" +
-                "For Rock Paper Scissor Lizard Spock: /rps-{Play}" +
+                "For Rock Paper Scissor Lizard Spock: /rps-{Play}\n" +
                 "For a con flip: /coinflip\n" +
-                "For a dice roll: /roll-{dice value}\n";
+                "For a dice roll: /roll-{dice value}\n" +
+                "For an uplifting quote: /quote\n" +
+                "For important links: /ulti-links";
+      
+  response.end(message);   
 }
 
 // Coin Flip
