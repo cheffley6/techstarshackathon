@@ -6,18 +6,30 @@ const PORT=4390;
 
 // We create a function which handles any requests and sends a simple response
 function handleRequest(request, response){
-	var min=1; 
-    var max=4;  
-    var message = "I choose Rock - Tie"
-    var random =Math.floor(Math.random() * (+max - +min)) + +min; 
-    if(random == 2)
-    {
-    	message = "I choose Scissor - You Win"
-    } 
-    else if(random == 3) message = "I choose Paper - I win!!"
-  response.end(message);
+  console.log(request.url);
+  
+  //Call methods
+  switch(request.url)
+  {
+    case "/rps-rock":
+      RPS_RockCall(response);
+  }  
 }
 
+function RPS_RockCall(response)
+{
+  var min=1; 
+  var max=4;  
+  var message = "I choose Rock - Tie"
+  var random =Math.floor(Math.random() * (+max - +min)) + +min; 
+  if(random == 2)
+  {
+    message = "I choose Scissor - You Win"
+  } 
+  else if(random == 3) message = "I choose Paper - I win!!"
+  response.end(message);
+  
+}
 
 // We create the web server object calling the createServer function. Passing our request function onto createServer guarantees the function is called once for every HTTP request that's made against the server
 var server = http.createServer(handleRequest);
