@@ -9,7 +9,6 @@ const PORT=4390;
 // We create a function which handles any requests and sends a simple response
 function handleRequest(request, response){
   //Call methods
-  console.log(request);
   switch(request.url)
   {
     case "/rps-rock":
@@ -27,17 +26,30 @@ function handleRequest(request, response){
     case "/rps-spock":
       RPS_SpockCall(response);
       break;
+<<<<<<< HEAD
     case "/roll-d20":
       rolld20(response);
+=======
+    case "/help":
+      help(response);
+      break
+>>>>>>> 99386b6c648336058abe34246d926f8f00dafdc8
     case "/roll-d4":
-      rollD4();
+      rollD4(response);
       break;
     case "/roll-d6":
-      rollD6();
+      rollD6(response);
       break;
     case "/roll-d8":
-      rollD8();
+      rollD8(response);
       break;
+	  break;
+	case "/coinflip":
+	  CoinFlip(response);
+	  break;
+	case "/quote":
+	  Quote(response);
+	  break;
   }  
 }
 
@@ -46,16 +58,16 @@ function RandomValueGenerator(min, max){
    return Math.floor(Math.random() * (+max - +min)) + +min; 
 }
 
-function rollD4() {
-    response.end(RandomValueGenerator(1, 5));
+function rollD4(response) {
+    response.end(RandomValueGenerator(1, 5).toString(10));
 }
 
-function rollD6() {
-    response.end(RandomValueGenerator(1, 7));
+function rollD6(response) {
+    response.end(RandomValueGenerator(1, 7).toString(10));
 }
 
-function rollD8() {
-    response.end(RandomValueGenerator(1, 9));
+function rollD8(response) {
+    response.end(RandomValueGenerator(1, 9).toString(10));
 }
 function RPS_RockCall(response)
 {
@@ -112,6 +124,7 @@ function RPS_SpockCall(response)
   response.end(message);
 }
 
+<<<<<<< HEAD
 function numGuess(response, guess) {
   console.log(guess);
   response.end("30");
@@ -121,6 +134,43 @@ function rolld20(response) {
   response.end(RandomValueGenerator(1, 21) + "");
 }
 
+=======
+//Help Command
+function help(response)
+{
+  var message = "Welcome to Ulti-lity Bot!\n" + 
+                "We have a variety of awesome utilities for everyone!\n" +
+                "For Rock Paper Scissor Lizard Spock: /rps-{Play}" +
+                "For a con flip: /coinflip\n" +
+                "For a dice roll: /roll-{dice value}\n";
+}
+
+// Coin Flip
+function CoinFlip(response)
+{
+	var result = RandomValueGenerator(0, 2)
+	console.log(result)
+	if (result == 0) {
+		message = "Heads"
+	}
+	else {
+		message = "Tails"
+	}
+	response.end(message)
+}
+
+// Quote
+function Quote(response)
+{
+	var quotes = ["You are a winner!", "You are not a loser!", "Today is your day!", "Go get 'em!", "You can do it!"]
+
+	var result = RandomValueGenerator(0, 5)
+	var message = quotes[result]
+	response.end(message)
+}
+
+
+>>>>>>> 99386b6c648336058abe34246d926f8f00dafdc8
 // We create the web server object calling the createServer function. Passing our request function onto createServer guarantees the function is called once for every HTTP request that's made against the server
 var server = http.createServer(handleRequest);
 
