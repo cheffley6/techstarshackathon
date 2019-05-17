@@ -26,14 +26,11 @@ function handleRequest(request, response){
     case "/rps-spock":
       RPS_SpockCall(response);
       break;
-<<<<<<< HEAD
     case "/roll-d20":
       rolld20(response);
-=======
     case "/help":
       help(response);
       break
->>>>>>> 99386b6c648336058abe34246d926f8f00dafdc8
     case "/roll-d4":
       rollD4(response);
       break;
@@ -43,13 +40,12 @@ function handleRequest(request, response){
     case "/roll-d8":
       rollD8(response);
       break;
-	  break;
-	case "/coinflip":
-	  CoinFlip(response);
-	  break;
-	case "/quote":
-	  Quote(response);
-	  break;
+    case "/coinflip":
+      CoinFlip(response);
+      break;
+    case "/quote":
+      Quote(response);
+      break;
   }  
 }
 
@@ -124,7 +120,6 @@ function RPS_SpockCall(response)
   response.end(message);
 }
 
-<<<<<<< HEAD
 function numGuess(response, guess) {
   console.log(guess);
   response.end("30");
@@ -134,7 +129,6 @@ function rolld20(response) {
   response.end(RandomValueGenerator(1, 21) + "");
 }
 
-=======
 //Help Command
 function help(response)
 {
@@ -148,29 +142,28 @@ function help(response)
 // Coin Flip
 function CoinFlip(response)
 {
-	var result = RandomValueGenerator(0, 2)
-	console.log(result)
-	if (result == 0) {
-		message = "Heads"
-	}
-	else {
-		message = "Tails"
-	}
-	response.end(message)
+    var result = RandomValueGenerator(0, 2)
+    console.log(result)
+    if (result == 0) {
+        message = "Heads"
+    }
+    else {
+        message = "Tails"
+    }
+    response.end(message)
 }
 
 // Quote
 function Quote(response)
 {
-	var quotes = ["You are a winner!", "You are not a loser!", "Today is your day!", "Go get 'em!", "You can do it!"]
+    var quotes = ["You are a winner!", "You are not a loser!", "Today is your day!", "Go get 'em!", "You can do it!"]
 
-	var result = RandomValueGenerator(0, 5)
-	var message = quotes[result]
-	response.end(message)
+    var result = RandomValueGenerator(0, 5)
+    var message = quotes[result]
+    response.end(message)
 }
 
 
->>>>>>> 99386b6c648336058abe34246d926f8f00dafdc8
 // We create the web server object calling the createServer function. Passing our request function onto createServer guarantees the function is called once for every HTTP request that's made against the server
 var server = http.createServer(handleRequest);
 
