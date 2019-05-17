@@ -4,33 +4,54 @@ var http = require('http');
 // We define the port we want to listen to. Logically this has to be the same port than we specified on ngrok.
 const PORT=4390;
 
-//https://4e6e6e73.ngrok.io/rps-rock
+//https://69eb0b3b.ngrok.io/command
 
 // We create a function which handles any requests and sends a simple response
 function handleRequest(request, response){
-  console.log(request.url);
-
   //Call methods
   switch(request.url)
   {
     case "/rps-rock":
       RPS_RockCall(response);
+      break;
+    case "/rps-paper":
+      RPS_PaperCall(response);
+      break;
+    case "/rps-scissor":
+      RPS_ScissorCall(response);
+      break;
   }  
 }
 
+//Rock 
+function RandomValueGenerator(min, max){
+   return Math.floor(Math.random() * (+max - +min)) + +min; 
+}
 function RPS_RockCall(response)
 {
-  var min=1; 
-  var max=4;  
-  var message = "I choose Rock - Tie"
-  var random =Math.floor(Math.random() * (+max - +min)) + +min; 
-  if(random == 2)
-  {
-    message = "I choose Scissor - You Win"
-  } 
-  else if(random == 3) message = "I choose Paper - I win!!"
+  var random = RandomValueGenerator(1,4);
+  var message = "Bot chose Rock - Tie!";
+  if(random == 2) message = "Bot chose Scissor - You Win!";
+  else if(random == 3) message = "Bot chose Paper - You Lose!";
   response.end(message);
-  
+}
+
+function RPS_PaperCall(response)
+{
+  var random = RandomValueGenerator(1,4);
+  var message = "Bot chose Paper - Tie!"
+  if(random == 2) message = "Bot chose Rock - You Win!"
+  else if(random == 3) message = "Bot chose Scissor - You Lose!"
+  response.end(message);
+}
+
+function RPS_ScissorCall(response)
+{
+  var random = RandomValueGenerator(1,4);
+  var message = "Bot chose Scissor - Tie!"
+  if(random == 2) message = "Bot chose Paper - You Win!"
+  else if(random == 3) message = "Bot chose Rock - You Lose!"
+  response.end(message);
 }
 
 // We create the web server object calling the createServer function. Passing our request function onto createServer guarantees the function is called once for every HTTP request that's made against the server
