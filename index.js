@@ -54,15 +54,15 @@ function RandomValueGenerator(min, max){
 }
 
 function rollD4(response) {
-    response.end(RandomValueGenerator(1, 5));
+    response.end(RandomValueGenerator(1, 5).toString(10));
 }
 
 function rollD6(response) {
-    response.end(RandomValueGenerator(1, 7));
+    response.end(RandomValueGenerator(1, 7).toString(10));
 }
 
 function rollD8(response) {
-    response.end(RandomValueGenerator(1, 9));
+    response.end(RandomValueGenerator(1, 9).toString(10));
 }
 function RPS_RockCall(response)
 {
