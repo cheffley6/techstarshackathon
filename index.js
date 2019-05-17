@@ -28,13 +28,13 @@ function handleRequest(request, response){
       RPS_SpockCall(response);
       break;
     case "/roll-d4":
-      rollD4();
+      rollD4(response);
       break;
     case "/roll-d6":
-      rollD6();
+      rollD6(response);
       break;
     case "/roll-d8":
-      rollD8();
+      rollD8(response);
       break;
   }  
 }
@@ -44,16 +44,16 @@ function RandomValueGenerator(min, max){
    return Math.floor(Math.random() * (+max - +min)) + +min; 
 }
 
-function rollD4() {
-    response.end(RandomValueGenerator(1, 5));
+function rollD4(response) {
+    response.end(RandomValueGenerator(1, 5).toString(10));
 }
 
-function rollD6() {
-    response.end(RandomValueGenerator(1, 7));
+function rollD6(response) {
+    response.end(RandomValueGenerator(1, 7).toString(10));
 }
 
-function rollD8() {
-    response.end(RandomValueGenerator(1, 9));
+function rollD8(response) {
+    response.end(RandomValueGenerator(1, 9).toString(10));
 }
 function RPS_RockCall(response)
 {
