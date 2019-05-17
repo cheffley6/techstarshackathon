@@ -4,39 +4,91 @@ var http = require('http');
 // We define the port we want to listen to. Logically this has to be the same port than we specified on ngrok.
 const PORT=4390;
 
-//https://4e6e6e73.ngrok.io/rps-rock
+//https://69eb0b3b.ngrok.io/command
 
 // We create a function which handles any requests and sends a simple response
 function handleRequest(request, response){
-  console.log(request.url);
-
   //Call methods
+  console.log(request);
   switch(request.url)
   {
     case "/rps-rock":
       RPS_RockCall(response);
       break;
-    case "/numguess":
-      numGuess(response, request);
+    case "/rps-paper":
+      RPS_PaperCall(response);
+      break;
+    case "/rps-scissor":
+      RPS_ScissorCall(response);
+      break;
+    case "/rps-lizard":
+      RPS_LizardCall(response);
+      break;
+    case "/rps-spock":
+      RPS_SpockCall(response);
       break;
     case "/roll-d20":
       rolld20(response);
   }  
 }
 
+//Rock 
+function RandomValueGenerator(min, max){
+   return Math.floor(Math.random() * (+max - +min)) + +min; 
+}
 function RPS_RockCall(response)
 {
-  var min=1; 
-  var max=4;  
-  var message = "I choose Rock - Tie"
-  var random =Math.floor(Math.random() * (+max - +min)) + +min; 
-  if(random == 2)
-  {
-    message = "I choose Scissor - You Win"
-  } 
-  else if(random == 3) message = "I choose Paper - I win!!"
+  var random = RandomValueGenerator(1,6);
+  var message = "Bot chose Rock - Tie!";
+  if(random == 2) message = "Bot chose Scissor - You Win!";
+  else if(random == 3) message = "Bot chose Paper - You Lose!";
+  else if(random == 4) message = "Bot chose Lizard - You Win!";
+  else if(random == 5) message = "Bot chose Spock - You Lose!";
   response.end(message);
-  
+}
+
+function RPS_PaperCall(response)
+{
+  var random = RandomValueGenerator(1,6);
+  var message = "Bot chose Paper - Tie!"
+  if(random == 2) message = "Bot chose Rock - You Win!"
+  else if(random == 3) message = "Bot chose Scissor - You Lose!"
+  else if(random == 4) message = "Bot chose Lizard - You Lose!";
+  else if(random == 5) message = "Bot chose Spock - You Win!";
+  response.end(message);
+}
+
+function RPS_ScissorCall(response)
+{
+  var random = RandomValueGenerator(1,6);
+  var message = "Bot chose Scissor - Tie!"
+  if(random == 2) message = "Bot chose Paper - You Win!"
+  else if(random == 3) message = "Bot chose Rock - You Lose!"
+  else if(random == 4) message = "Bot chose Lizard - You Win!";
+  else if(random == 5) message = "Bot chose Spock - You Lose!";
+  response.end(message);
+}
+
+function RPS_LizardCall(response)
+{
+  var random = RandomValueGenerator(1,6);
+  var message = "Bot chose Lizard - Tie!"
+  if(random == 2) message = "Bot chose Paper - You Win!"
+  else if(random == 3) message = "Bot chose Rock - You Lose!"
+  else if(random == 4) message = "Bot chose Scissors - You Lose!";
+  else if(random == 5) message = "Bot chose Spock - You Win!";
+  response.end(message);
+}
+
+function RPS_SpockCall(response)
+{
+  var random = RandomValueGenerator(1,6);
+  var message = "Bot chose Spock - Tie!"
+  if(random == 2) message = "Bot chose Paper - You Lose!"
+  else if(random == 3) message = "Bot chose Rock - You Win!"
+  else if(random == 4) message = "Bot chose Lizard - You Lose!";
+  else if(random == 5) message = "Bot chose Scissors - You Win!";
+  response.end(message);
 }
 
 function numGuess(response, guess) {
@@ -45,8 +97,7 @@ function numGuess(response, guess) {
 }
 
 function rolld20(response) {
-  var randNum = Math.floor(Math.random() * (20) + 1));
-  
+  response.end(RandomValueGenerator(1, 21) + "");
 }
 
 // We create the web server object calling the createServer function. Passing our request function onto createServer guarantees the function is called once for every HTTP request that's made against the server
