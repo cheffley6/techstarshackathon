@@ -29,6 +29,15 @@ function handleRequest(request, response){
       break;
     case "/help":
       help(response);
+      break
+    case "/roll-d4":
+      rollD4();
+      break;
+    case "/roll-d6":
+      rollD6();
+      break;
+    case "/roll-d8":
+      rollD8();
       break;
   }  
 }
@@ -36,6 +45,18 @@ function handleRequest(request, response){
 //Rock 
 function RandomValueGenerator(min, max){
    return Math.floor(Math.random() * (+max - +min)) + +min; 
+}
+
+function rollD4() {
+    response.end(RandomValueGenerator(1, 5));
+}
+
+function rollD6() {
+    response.end(RandomValueGenerator(1, 7));
+}
+
+function rollD8() {
+    response.end(RandomValueGenerator(1, 9));
 }
 function RPS_RockCall(response)
 {
